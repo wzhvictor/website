@@ -155,7 +155,7 @@ Gin 使用自定义版本的 [HttpRouter](https://github.com/julienschmidt/httpr
 
 [所有性能测试](/BENCHMARKS.md)
 
-Benchmark name                              | (1)        | (2)         | (3) 		    | (4)
+Benchmark name                              | (1)        | (2)         | (3) 	    | (4)
 --------------------------------------------|-----------:|------------:|-----------:|---------:
 **BenchmarkGin_GithubAll**                  | **30000**  |  **48375**  |     **0**  |   **0**
 BenchmarkAce_GithubAll                      |   10000    |   134059    |   13792    |   167
@@ -535,10 +535,12 @@ Gin使用[go-playground/validator.v8](https://github.com/go-playground/validator
 使用时，需要在要绑定的所有字段上，设置相应的tag。例如，使用JSON绑定时，字段tag设置为`json:"fieldname"`。
 
 Gin提供了两类绑定方法：
-- **MustBind** - 
+
+- **MustBind**
    - **方法** - `Bind`, `BindJSON`, `BindXML`, `BindQuery`, `BindYAML`
    - **说明** - 这些方法属于`MustBindWith`的具体调用。如果发生绑定错误，则请求终止，并触发`c.AbortWithError(400,err).SetType(ErrorTypeBind)`。响应状态码被设置为400，`Content-Type`被设置为`text/plain;charset= UTF-8`。如果您在此之后尝试设置响应状态码，Gin会输出日志“ `[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 400 with 422`。如果您希望更好地把控绑定，请考虑使用`ShouldBind`等效方法。
-- **ShouldBind** - 
+
+- **ShouldBind**
    - **方法** - `ShouldBind`，`ShouldBindJSON`，`ShouldBindXML`，`ShouldBindQuery`
    - **说明** - 这些方法属于`ShouldBindWith`的具体调用。如果发生绑定错误，Gin会返回错误。由您处理错误以及请求。
 
